@@ -1,12 +1,6 @@
 # serializers.py
 from rest_framework import serializers
-from .models import PDFDocument, TaxForm1040
-
-
-class PDFDocumentSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = PDFDocument
-        fields = '__all__'
+from .models import TaxForm1040
 
 
 class TaxForm1040Serializer(serializers.ModelSerializer):
