@@ -110,6 +110,8 @@ app easy to open and explore without _too_ many dependencies dragging the instal
 * having the app be a sub-app of the main project was a goof early on but I figured I should just keep chugging along as time was limited.
 * No Tests. :*(  Don't know of a quick way to implement testing for the repo, Python is rather new to me, if I knew one of the testing frameworks off of the top of my head it would've been pretty simple but I was worried I'd get lost in implementation (i.e, mocks and spies acting goofy)
 * Stuff like the PDF file, images, and the raw OCR output are inefficient where they are.  Heavy load on the DB to have the raw OCR output there, would rather dump it off somewhere like S3 if I had infinite money/time
+* The idea folder snuck its way into the branch and no matter what I do to gitignore it's not biting.
+
 ## Author
 
 Zack D
