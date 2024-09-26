@@ -1,4 +1,4 @@
-# Tax Parser Technical Examination
+# Tax Parser Proof of Concept
 
 Simple Tax Parser created as a proof of concept
 
