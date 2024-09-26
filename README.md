@@ -28,7 +28,7 @@ Built in Python, specifically python 3.9 (did not realize that was my system def
 
 * Run using `python3 manage.py runserver`
 * One thing to be aware of is that I did not write any seeding scripts for getting the initial key/values into the SQLite DB for the parsing algorithm to work
-* For sake of ease of evaluation I'm including the `db.sqllite3` file in the submission, however, if you want to use an empty DB, add these rows to `TaxFormValues`:
+* For sake of ease of evaluation I'm including the `db.sqllite3` file in the POC, however, if you want to use an empty DB, add these rows to `TaxFormValues`:
 ``````
     id, tax_form, value, tax_line
     1,1040,total,9
@@ -41,8 +41,6 @@ Built in Python, specifically python 3.9 (did not realize that was my system def
 * `id` doesn't matter of course, but included it to show the whole table
 
 ## API Reference
-
-I deviated a small amount from the requirments and added a few extra endpoints for both smoother Auth and for the main Parsing Algorithm to work through validation 
 
 # /taxparser/api/token/
     Returns a standard Django Auth Token to use in the header of your requests.  
@@ -90,7 +88,7 @@ POST EXAMPLE:
 ```
 
 # /taxparser/tax-forms/<int:document_id>/
-    Now for the actual endpoints you wanted ha.  Grabs a Tax Form by it's ID in the URL.
+    Grabs a Tax Form by it's ID in the URL.
 
 # /taxparser/tax-forms/ GET
     Retrieve all 1040 Tax Forms persisted in the DB
@@ -101,14 +99,13 @@ POST EXAMPLE:
 ## Trials and Tribulations
 There were some things I just did not do as I was really running the clock for how much time I wanted to spend on this, some are obvious, some are a little more hidden.
 * I did not set up proper PKs and Foreign keys across the whole DB, fully aware the parsing portion is a non-normalized wild west 
-* Disabling CSRF on /register/ mostly because I didn't want to finangle with Postman to get it to work for this test
+* Disabling CSRF on /register/ mostly because I didn't want to finangle with Postman to get it to work for this POC
 * Used SQLite as opposed to something a little more bulletproof like Postgres. This was somewhat intential however, wanted the
 app easy to open and explore without _too_ many dependencies dragging the install down
 * The ML set is in SQLite. This one bummed me out, as it _really_ should be in a non-relational DB due to access times at scale, but for the life of me I could not figure out how to get the mongo wrapper to actually work
   * On that note, that's why that part of the DB is utterly filled with JSON objects.  I was originally planning for that slice to _be_ Mongo, and being as such having the JSON values on access with one pull is ideal. Made sure to not let it bleed to the requested part of the DB (TaxForm1040)
 * The Parsing Algo does not take transforms into account when deriving values, i.e, if the PDF is slightly ajar.  I thought of adding it, but realized it would take too much time to implement. But it parses the digitally delivered forms just fine.
 * having the app be a sub-app of the main project was a goof early on but I figured I should just keep chugging along as time was limited.
-* No Tests. :*(  Don't know of a quick way to implement testing for the repo, Python is rather new to me, if I knew one of the testing frameworks off of the top of my head it would've been pretty simple but I was worried I'd get lost in implementation (i.e, mocks and spies acting goofy)
 * Stuff like the PDF file, images, and the raw OCR output are inefficient where they are.  Heavy load on the DB to have the raw OCR output there, would rather dump it off somewhere like S3 if I had infinite money/time
 * The idea folder snuck its way into the branch and no matter what I do to gitignore it's not biting.
 
