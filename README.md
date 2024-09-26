@@ -1,6 +1,6 @@
 # Tax Parser Technical Examination
 
-Simple Tax Parser created as a technical test
+Simple Tax Parser created as a proof of concept
 
 ## Description
 
