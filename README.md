@@ -99,7 +99,7 @@ POST EXAMPLE:
     If you don't want to upload through the PDF route you can manually put data in this way. There will be no associated PDF as a result.
 
 ## Trials and Tribulations
-There were some things I just did not do as I was really running the clock, some are obvious, some are a little more hidden.
+There were some things I just did not do as I was really running the clock for how much time I wanted to spend on this, some are obvious, some are a little more hidden.
 * I did not set up proper PKs and Foreign keys across the whole DB, fully aware the parsing portion is a non-normalized wild west 
 * Disabling CSRF on /register/ mostly because I didn't want to finangle with Postman to get it to work for this test
 * Used SQLite as opposed to something a little more bulletproof like Postgres. This was somewhat intential however, wanted the
